@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:06:56 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/04/15 13:14:59 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:12:33 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,68 +31,38 @@ std::string PhoneBook::trim(const std::string &str)
 	return (trimmed);
 }
 
+void PhoneBook::get_info(Contact& current, const std::string& str, void (Contact::*setter)(const std::string&))
+{
+	std::string line;
+
+	line = "";
+	while (!std::cin.eof() && line.empty())
+	{
+		std::cout << C_BLU << str << C_RST;
+		std::getline(std::cin, line);
+		line = trim(line);
+		if (line.empty())
+			std::cout << C_UP C_CUT;
+		else
+			(current.*setter)(line);
+	}
+}
+
 void PhoneBook::add(void)
 {
-	std::string str;
-	
+	Contact& current = this->_list[this->_index % 8];
+
 	std::cout << C_PUR " -- ADDING SECTION -- " C_RST << std::endl;
-	str = "";
 	if (this->_index > 7)
-		std::cout << C_RED "Warning: overwriting info about " C_CYA << this->_list[this->_index % 8].get_fname() << C_RST << std::endl;
-	while (!std::cin.eof() && str.empty())
-	{
-		std::cout << C_BLU "First name: " C_RST;
-		std::getline(std::cin, str);
-		str = trim(str);
-		if (str.empty())
-			std::cout << C_UP C_CUT;
-		else
-			this->_list[this->_index % 8].set_fname(str);
-	}
-	str = "";
-	while (!std::cin.eof() && str.empty())
-	{
-		std::cout << C_BLU "Last name: " C_RST;
-		std::getline(std::cin, str);
-		str = trim(str);
-		if (str.empty())
-			std::cout << C_UP C_CUT;
-		else
-			this->_list[this->_index % 8].set_lname(str);
-	}
-	str = "";
-	while (!std::cin.eof() && str.empty())
-	{
-		std::cout << C_BLU "Nickname: " C_RST;
-		std::getline(std::cin, str);
-		str = trim(str);
-		if (str.empty())
-			std::cout << C_UP C_CUT;
-		else
-			this->_list[this->_index % 8].set_nick(str);
-	}
-	str = "";
-	while (!std::cin.eof() && str.empty())
-	{
-		std::cout << C_BLU "Phone number: " C_RST;
-		std::getline(std::cin, str);
-		str = trim(str);
-		if (str.empty())
-			std::cout << C_UP C_CUT;
-		else
-			this->_list[this->_index % 8].set_phone_num(str);
-	}
-	str = "";
-	while (!std::cin.eof() && str.empty())
-	{
-		std::cout << C_BLU "Darkest secret: " C_RST;
-		std::getline(std::cin, str);
-		str = trim(str);
-		if (str.empty())
-			std::cout << C_UP C_CUT;
-		else
-			this->_list[this->_index % 8].set_secret(str);
-	}
+		std::cout << C_RED "Warning: overwriting info about " C_CYA << current.get_fname() << C_RST << std::endl;
+	get_info(current, "First name: ", &Contact::set_fname);
+	get_info(current, "Last name: ", &Contact::set_lname);
+	get_info(current, "Nickname: ", &Contact::set_nick);
+	get_info(current, "Phone number: ", &Contact::set_phone_num);
+	get_info(current, "Darkest secret: ", &Contact::set_secret);
+	for(int i = 0; i < 6; i++)
+		std::cout << C_UP C_CUT;
+	std::cout << C_GRN "Success to register: " C_CYA << current.get_fname() << C_RST "." << std::endl;
 }
 
 void PhoneBook::search(void)

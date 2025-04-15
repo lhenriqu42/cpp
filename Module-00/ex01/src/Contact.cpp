@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:30:29 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/04/14 19:37:00 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:48:59 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,27 @@ std::string	Contact::get_secret(void) const
 	return (this->_secret);
 }
 
-void	Contact::set_fname(std::string str)
+void	Contact::set_fname(const std::string& str)
 {
 	this->_fname = str;
 }
 
-void	Contact::set_lname(std::string str)
+void	Contact::set_lname(const std::string& str)
 {
 	this->_lname = str;
 }
 
-void	Contact::set_nick(std::string str)
+void	Contact::set_nick(const std::string& str)
 {
 	this->_nick = str;
 }
 
-void	Contact::set_phone_num(std::string str)
+void	Contact::set_phone_num(const std::string& str)
 {
 	this->_phone_num = str;
 }
 
-void	Contact::set_secret(std::string str)
+void	Contact::set_secret(const std::string& str)
 {
 	this->_secret = str;
 }
