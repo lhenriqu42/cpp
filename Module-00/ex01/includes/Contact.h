@@ -6,13 +6,12 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:36:41 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/04/14 19:36:44 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:44:57 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_HPP
-
-# define CONTACT_HPP
+#ifndef CONTACT_H
+# define CONTACT_H
 
 # include <iostream>
 # include <string>

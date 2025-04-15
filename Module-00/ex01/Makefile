@@ -1,5 +1,5 @@
 # ===========================================================================
-#  =============================== CONTROL ==================================
+#  =============================== CONTROL =================================
 # ===========================================================================
 
 UP = \033[A
@@ -7,8 +7,8 @@ CUT = \033[K
 RESET = \033[0m
 RED = \033[31;3m
 GREEN = \033[32;3m
-WHITE = \033[37;1;4m
 YELLOW = \033[33;3m
+WHITE = \033[37;1;4m
 CYAN = \033[36;1;3;208m
 
 # ===========================================================================
@@ -23,14 +23,16 @@ CC := c++
 #  =============================== C++ =====================================
 # ===========================================================================
 
-NAME = test  #MUDAR
+NAME = phone
 EX_PATH = ex01/
 HEADERS_PATH = ./includes/
 BUILD_PATH = ./build/
 FILES_PATH = ./src/
 
 FILES = \
-	megaphone.cpp \
+	Main.cpp \
+	Contact.cpp \
+	PhoneBook.cpp \
 
 OBJS = $(addprefix $(BUILD_PATH), $(FILES:%.cpp=%.o))
 
@@ -52,7 +54,10 @@ ifeq ($(wildcard $(NAME)),)
 endif
 
 $(NAME): $(OBJS) $(HEADERS_PATH)
+	@printf "$(YELLOW)[Building]$(RESET) $(NAME)...\n"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -I$(HEADERS_PATH)
+	@printf "$(UP)$(CUT)"
+	@printf "$(GREEN)[Builded]$(RESET) $(NAME)...\n"
 	@printf "$(CYAN)------ ------------------------------- ------$(RESET)\n"
 	@printf "$(CYAN)------| $(EX_PATH) compiled successfully!! |------$(RESET)\n"
 	@printf "$(CYAN)------ ------------------------------- ------$(RESET)\n"
@@ -60,9 +65,9 @@ $(NAME): $(OBJS) $(HEADERS_PATH)
 
 $(BUILD_PATH)%.o:$(FILES_PATH)%.cpp
 	@printf "$(YELLOW)[Compiling]$(RESET) $(notdir $<)...\n"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADERS_PATH)
 	@printf "$(UP)$(CUT)"
-	@printf "$(GREEN)[Finished]$(RESET) $(notdir $<)...\n"
+	@printf "$(GREEN)[Compiled]$(RESET) $(notdir $<)...\n"
 
 clean:
 	@printf "$(RED)[Removing Objects...]$(RESET)\n"
