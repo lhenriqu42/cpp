@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 08:40:03 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/04/15 10:52:54 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:00:28 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ int	main(void)
 
 	while (line != "EXIT")
 	{
+		ph.printMenu();
 		std::cout << C_CYA "Enter a command > " C_RST;
 		std::getline(std::cin, line);
-		std::cout << C_UP C_CUT;
+		if (!std::cin.eof())
+		{
+			for (size_t i = 0; i < 8; i++)
+				std::cout << C_UP C_CUT;
+		}
 		if (line == "ADD")
 			ph.add();
 		else if (line == "SEARCH")
