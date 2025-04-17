@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:06:56 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/04/16 15:08:38 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/04/17 08:23:26 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void PhoneBook::printMenu(void)
 }
 void PhoneBook::getContactDetails(int index)
 {
+	index--;
 	size_t lines_to_cut = this->_index + 7;
 	for(size_t i = 0; i < lines_to_cut; i++)
 		std::cout << C_UP C_CUT;
@@ -173,7 +174,10 @@ void PhoneBook::getContactDetails(int index)
 	std::cout << C_BLU << "Nickname: " << C_RST << _list[index].get_nick() << std::endl;
 	std::cout << C_BLU << "Phone number: " << C_RST << _list[index].get_phone_num() << std::endl;
 	std::cout << C_BLU << "Darkest secret: " << C_RST << _list[index].get_secret() << std::endl << std::endl;
+	std::cout << "Press <Enter> to to continue..." << std::flush;
 	std::cin.ignore(10000, '\n');
-	std::cout << "Press any button to continue..." << std::flush;
-	std::cin.get();
+
+	lines_to_cut = 10;
+	for(size_t i = 0; i < lines_to_cut; i++)
+		std::cout << C_UP C_CUT;
 }
