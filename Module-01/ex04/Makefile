@@ -23,17 +23,14 @@ CC := c++
 #  =============================== C++ =====================================
 # ===========================================================================
 
-NAME = battle
-EX_PATH = ex03/
+NAME = replace
+EX_PATH = ex04/
 HEADERS_PATH = ./includes/
 BUILD_PATH = ./build/
 FILES_PATH = ./src/
 
 FILES = \
 	main.cpp \
-	Weapon.cpp \
-	HumanA.cpp \
-	HumanB.cpp \
 
 OBJS = $(addprefix $(BUILD_PATH), $(FILES:%.cpp=%.o))
 
