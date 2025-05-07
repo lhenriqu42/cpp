@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:06:56 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/04/17 08:23:26 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:00:33 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void PhoneBook::add(void)
 	Contact& current = this->_list[this->_index % 8];
 
 	std::cout << C_PUR "╔══════════════════════════════╗" C_RST << std::endl;
-	std::cout << C_PUR "║    " C_WHT " -- ADDING SECTION -- " C_RST "    ║" C_RST << std::endl;
+	std::cout << C_PUR "║    " C_WHT " -- ADDING SECTION -- " C_PUR "    ║" C_RST << std::endl;
 	std::cout << C_PUR "╚══════════════════════════════╝" C_RST << std::endl;
 	if (this->_index > 7)
 		std::cout << C_RED "Warning: overwriting info about " C_CYA << current.get_fname() << C_RST << std::endl;
@@ -121,10 +121,10 @@ void PhoneBook::search(void)
 		Contact& current = this->_list[i];
 		if (current.get_fname().size())
 		{
-			std::cout << "║ " << i + 1 << ". " 
-				<< formatString(current.get_fname(), 11) << " ║ " 
-				<< formatString(current.get_lname(), 11) << " ║ " 
-				<< formatString(current.get_nick(), 10) << " ║ " 
+			std::cout << "║ " << i + 1 << ". "
+				<< formatString(current.get_fname(), 11) << " ║ "
+				<< formatString(current.get_lname(), 11) << " ║ "
+				<< formatString(current.get_nick(), 10) << " ║ "
 				<< formatString(current.get_phone_num(), 14) << " ║\n";
 		}
 	}
@@ -165,7 +165,7 @@ void PhoneBook::getContactDetails(int index)
 	size_t lines_to_cut = this->_index + 7;
 	for(size_t i = 0; i < lines_to_cut; i++)
 		std::cout << C_UP C_CUT;
-	
+
 	std::cout << "╔══════════════════════════════════╗\n";
 	std::cout << "║ Contact: " << formatString(_list[index].get_fname(), 23) << " ║\n";
 	std::cout << "╚══════════════════════════════════╝\n";
