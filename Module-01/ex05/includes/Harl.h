@@ -6,13 +6,12 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 18:14:35 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/05/08 18:35:45 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:28:13 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 #include "colors.h"
 
