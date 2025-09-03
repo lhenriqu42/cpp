@@ -23,7 +23,7 @@ CC := c++
 #  =============================== C++ =====================================
 # ===========================================================================
 
-NAME = fix
+NAME = Fixed
 EX_PATH = ex00/
 HEADERS_PATH = ./includes/
 BUILD_PATH = ./build/
@@ -31,8 +31,7 @@ FILES_PATH = ./src/
 
 FILES = \
 	main.cpp \
-	Zombie.cpp \
-	zombieHorde.cpp \
+	Fixed.cpp \
 
 OBJS = $(addprefix $(BUILD_PATH), $(FILES:%.cpp=%.o))
 
