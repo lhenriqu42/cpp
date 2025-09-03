@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.h                                            :+:      :+:    :+:   */
+/*   Colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 08:41:54 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/09/03 10:24:44 by lhenriqu         ###   ########.fr       */
+/*   Created: 2025/09/03 10:23:07 by lhenriqu          #+#    #+#             */
+/*   Updated: 2025/09/03 10:24:04 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_H
-#define FIXED_H
 
-#include <iostream>
-#include "Colors.h"
+#pragma once
 
-
-class Fixed {
-	public:
-		Fixed();
-		Fixed(Fixed const &src);
-		~Fixed();
-
-		Fixed&	operator=(Fixed const &rSym);
-		int		getRawBits(void) const;
-		void	setRawBits(int const raw);
-
-	private:
-		int					value;
-		static const int	bits = 8;
-};
-
-#endif
+#define RED "\033[31m"
+#define GRN "\033[32m"
+#define YEL "\033[33m"
+#define BLU "\033[34m"
+#define MAG "\033[35m"
+#define CYN "\033[36m"
+#define WHT "\033[37m"
+#define RESET "\033[0m"
