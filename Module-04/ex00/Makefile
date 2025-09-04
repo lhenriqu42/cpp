@@ -24,7 +24,7 @@ CC := c++
 # ===========================================================================
 
 NAME = Polymorphism
-EX_PATH = ex00/
+EX_PATH := $(notdir $(CURDIR))/
 HEADERS_PATH = ./includes/
 BUILD_PATH = ./build/
 FILES_PATH = ./src/
