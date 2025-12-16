@@ -1,5 +1,7 @@
-.vscode
-*/.vscode
-*/*/build
-
-*/*/megaphone
+*
+!*/
+!*.*
+.*
+*build*
+!*Makefile*
+!*.md
