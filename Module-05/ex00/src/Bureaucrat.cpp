@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 18:24:49 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/12/16 11:59:13 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2026/01/20 09:55:12 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 // Overload of the << operator
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &a)
 {
-	o << MAG << a.getName() << RESET ",  burocrata com classificação " << CYN << a.getGrade() << RESET << std::endl;
+	o << MAG << a.getName() << RESET ",  bureaucrat grade " << CYN << a.getGrade() << RESET << std::endl;
 	return (o);
 }
 std::ostream &operator<<(std::ostream &o, const Bureaucrat *a)
 {
-	o << MAG << a->getName() << RESET ",  burocrata com classificação " << CYN << a->getGrade() << RESET << std::endl;
+	o << MAG << a->getName() << RESET ",  bureaucrat grade " << CYN << a->getGrade() << RESET << std::endl;
 	return (o);
 }

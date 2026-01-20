@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 18:24:49 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/12/16 14:29:32 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2026/01/20 09:56:55 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ void Bureaucrat::signForm(Form &form)
 	try
 	{
 		form.beSigned(*this);
-		std::cout << this->getName() << GRN " assinou " RESET << form.getName() << std::endl;
+		std::cout << this->getName() << GRN " signed " RESET << form.getName() << std::endl;
 		return ;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << this->getName() << RED " não conseguiu assinar " RESET << form.getName() << RED " porque " BLU << e.what() << RESET << std::endl;
+		std::cout << this->getName() << RED " couldn't sign " RESET << form.getName() << RED " because " BLU << e.what() << RESET << std::endl;
 		return ;
 	}
 }
@@ -115,11 +115,11 @@ const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 // Overload of the << operator
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &a)
 {
-	o << MAG << a.getName() << RESET ",	burocrata com classificação " << CYN << a.getGrade() << RESET << std::endl;
+	o << MAG << a.getName() << RESET ",	bureaucrat grade " << CYN << a.getGrade() << RESET << std::endl;
 	return (o);
 }
 std::ostream &operator<<(std::ostream &o, const Bureaucrat *a)
 {
-	o << MAG << a->getName() << RESET ", burocrata com classificação " << CYN << a->getGrade() << RESET << std::endl;
+	o << MAG << a->getName() << RESET ", bureaucrat grade " << CYN << a->getGrade() << RESET << std::endl;
 	return (o);
 }
