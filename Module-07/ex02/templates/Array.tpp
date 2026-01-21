@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:40:52 by lhenriqu          #+#    #+#             */
-/*   Updated: 2026/01/21 15:27:25 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:51:16 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ Array<T>& Array<T>::operator=(const Array<T>& other) {
 
 template <typename T>
 T& Array<T>::operator[](int index) {
-	if(index > static_cast<int>(_size) || index < 0)
+	if(index >= static_cast<int>(_size) || index < 0)
 		throw IndexOutOfBounds();
 	return _data[index];
 }
 
 template <typename T>
 const T& Array<T>::operator[](int index) const {
-	if(index > static_cast<int>(_size) || index < 0)
+	if(index >= static_cast<int>(_size) || index < 0)
 		throw IndexOutOfBounds();
 	return _data[index];
 }
