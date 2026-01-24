@@ -27,7 +27,6 @@ NAME = Span
 # nome da pasta pai (um nível acima da pasta atual)
 EX_PATH := $(notdir $(CURDIR))/
 HEADERS_PATH = ./includes/
-TEMPLATES_PATH = ./templates/
 BUILD_PATH = ./build/
 FILES_PATH = ./src/
 
@@ -56,9 +55,9 @@ ifeq ($(wildcard $(NAME)),)
 	@echo " "
 endif
 
-$(NAME): $(OBJS) $(HEADERS_PATH) ${TEMPLATES_PATH}
+$(NAME): $(OBJS) $(HEADERS_PATH)
 	@printf "$(YELLOW)[Building]$(RESET) $(NAME)...\n"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -I$(HEADERS_PATH) -I${TEMPLATES_PATH}
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -I$(HEADERS_PATH)
 	@printf "$(UP)$(CUT)"
 	@printf "$(GREEN)[Builded]$(RESET) $(NAME)...\n"
 	@printf "$(CYAN)------ ------------------------------- ------$(RESET)\n"
@@ -68,7 +67,7 @@ $(NAME): $(OBJS) $(HEADERS_PATH) ${TEMPLATES_PATH}
 
 $(BUILD_PATH)%.o:$(FILES_PATH)%.cpp
 	@printf "$(YELLOW)[Compiling]$(RESET) $(notdir $<)...\n"
-	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADERS_PATH) -I${TEMPLATES_PATH}
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADERS_PATH)
 	@printf "$(UP)$(CUT)"
 	@printf "$(GREEN)[Compiled]$(RESET) $(notdir $<)...\n"
 
