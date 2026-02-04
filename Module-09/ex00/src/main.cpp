@@ -13,8 +13,8 @@ int	main(int argc, char *argv[])
 
 	try
 	{
-		BitcoinExchange bitcoinExchange(argv[1]);
-		// Further processing can be done here
+		BitcoinExchange be;
+		be.performExchange(argv[1]);
 	}
 	catch (const std::exception &e)
 	{

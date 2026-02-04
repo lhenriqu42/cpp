@@ -21,9 +21,6 @@ double atod(std::string str)
 	if (iss.fail())
 		throw std::invalid_argument("bad input " + str);
 
-	if (rate < 0)
-		throw std::invalid_argument("not a positive number " + str);
-
 	return (rate);
 }
 
@@ -40,7 +37,7 @@ int atoi(std::string str)
 	return (value);
 }
 
-std::vector<std::string> split(const std::string &s, char *delimiters)
+std::vector<std::string> split(const std::string &s, const char *delimiters)
 {
 	std::vector<std::string> tokens;
 	size_t start = 0;
@@ -77,30 +74,38 @@ void loadCsv( Database &db, std::ifstream &csvFile)
 void validateDate(const std::string &date)
 {
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-		throw std::invalid_argument("bad input => " + date + " - bad date format ");
+		throw std::invalid_argument("bad input => " + date);
 
 	int year = atoi(date.substr(0, 4));
 	int month = atoi(date.substr(5, 2));
 	int day = atoi(date.substr(8, 2));
 
 	if (month < 1 || month > 12)
-		throw std::invalid_argument("bad input => " + date + " - invalid month in date ");
+		throw std::invalid_argument("bad input => " + date);
 	if (day < 1 || day > 31)
-		throw std::invalid_argument("bad input => " + date + " - invalid day in date ");
+		throw std::invalid_argument("bad input => " + date);
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-		throw std::invalid_argument("bad input => " + date + " - invalid day in date ");
+		throw std::invalid_argument("bad input => " + date);
 	if (month == 2)
 	{
 		bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 		if (day > (isLeap ? 29 : 28))
-			throw std::invalid_argument("bad input => " + date + " - invalid day in date ");
+			throw std::invalid_argument("bad input => " + date);
 	}
+}
+
+double get_value(const std::string &amount)
+{
+	double value = atod(amount);
+	if (value < 0)
+		throw std::invalid_argument("not a positive number.");
+	if (value > 1000)
+		throw std::invalid_argument("too large a number.");
+	return value;
 }
 
 void printExchange(const Database &db, const std::string &date, double amount)
 {
-	// VALIDAR SE ESTA CORRETO
-
 	Database::const_iterator it = db.lower_bound(date);
 	if (it == db.end() || it->first != date)
 	{
@@ -133,10 +138,8 @@ void printLineResult(const Database &db, const std::vector<std::string> &strings
 	if (strings.size() != 3)
 		throw std::invalid_argument("too many arguments in line for date " RESET + date);
 	
-	double amount = atod(strings[2]);
-
+	double amount = get_value(strings[2]);
 	printExchange(db, date, amount);
-	
 }
 
 
@@ -145,6 +148,8 @@ void printResults(const Database &db, std::ifstream &inputFile)
 	std::string line;
 	// Skip header
 	std::getline(inputFile, line);
+	if (trim(line) != "date | value")
+		throw std::invalid_argument("bad header in input file");
 	while (std::getline(inputFile, line))
 	{
 		std::vector<std::string> strings = split(trim(line), " \t\n\r");
@@ -160,19 +165,13 @@ void printResults(const Database &db, std::ifstream &inputFile)
 
 // ------------------------------------------- BITCOIN EXCHANGE -------------------------------------------
 
-BitcoinExchange::BitcoinExchange(const char *inputFilePath)
+BitcoinExchange::BitcoinExchange()
 {
 	std::ifstream csvFile("data.csv");
 	if (!csvFile.is_open()) throw FileNotFoundException("Database file not found: " RESET "data.csv");
 	Database db;
 	loadCsv(db, csvFile);
-
-
-	std::ifstream inputFile(inputFilePath);
-	if (!inputFile.is_open()) throw FileNotFoundException("Data file not found: " RESET + std::string(inputFilePath));	
-	
-	printResults(db, inputFile);
-
+	this->_db = db;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
@@ -189,12 +188,12 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 	return *this;
 }
 
-BitcoinExchange::~BitcoinExchange()
-{
-	// Destructor implementation
-}
+BitcoinExchange::~BitcoinExchange() {}
 
-void BitcoinExchange::performExchange(const std::string &date, double amount)
+void BitcoinExchange::performExchange(const char *inputFilePath)
 {
-	// Method implementation
+	std::ifstream inputFile(inputFilePath);
+	if (!inputFile.is_open()) throw FileNotFoundException("Input file not found: " RESET + std::string(inputFilePath));	
+	
+	printResults(_db, inputFile);
 }

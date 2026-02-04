@@ -12,15 +12,14 @@ typedef std::map<std::string, double> Database;
 class BitcoinExchange
 {
 	private:
-		BitcoinExchange() {};
+		Database _db;
 	public:
-		BitcoinExchange(const char *dataFilePath);
+		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &other);
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-
-		void performExchange(const std::string &date, double amount);
+		void performExchange(const char *inputFilePath);
 
 		class FileNotFoundException : public std::exception
 		{
