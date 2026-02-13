@@ -2,7 +2,7 @@
 
 #include <stack>
 #include <string>
-#include <vector>
+#include <list>
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
@@ -22,8 +22,8 @@ class RPN {
 		static int atoi(std::string str);
 		static std::string trim(const char* str);
 		static std::string trim(const std::string& str);
-		static std::vector<std::string> split(const std::string &s, const char *delimiters);
+		static std::list<std::string> split(const std::string &s, const char *delimiters);
 		// MAIN FUNCTION
 	
-		void evaluate(std::vector<std::string> tokens);
+		void evaluate(std::list<std::string> tokens);
 };

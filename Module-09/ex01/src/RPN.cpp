@@ -42,9 +42,9 @@ int RPN::atoi(std::string str)
 }
 
 
-std::vector<std::string> RPN::split(const std::string &s, const char *delimiters)
+std::list<std::string> RPN::split(const std::string &s, const char *delimiters)
 {
-	std::vector<std::string> tokens;
+	std::list<std::string> tokens;
 	size_t start = 0;
 	size_t end = s.find_first_of(delimiters);
 
@@ -65,9 +65,10 @@ std::vector<std::string> RPN::split(const std::string &s, const char *delimiters
 // --------------------------------------------------------------------------------------------------------------
 
 
-void RPN::evaluate(std::vector<std::string> tokens) {
-	for (size_t i = 0; i < tokens.size(); ++i) {
-		const std::string& token = tokens[i];
+void RPN::evaluate(std::list<std::string> tokens) {
+	typedef std::list<std::string>::iterator iterator;
+	for (iterator it = tokens.begin(); it != tokens.end(); ++it) {
+		const std::string& token = *it;
 		if (token == "+" || token == "-" || token == "*" || token == "/") {
 			if (_stack.size() < 2) {
 				throw std::runtime_error("Insufficient values in the expression");

@@ -2,12 +2,12 @@
 #include "Colors.h"
 #include <iostream>
 
-static std::vector<std::string> handle_args(char *argv[])
+static std::list<std::string> handle_args(char *argv[])
 {
-	std::vector<std::string> tokens;
+	std::list<std::string> tokens;
 	for (size_t i = 1; argv[i]; ++i)
 	{
-		std::vector<std::string> split_tokens = RPN::split(RPN::trim(argv[i]), " \t\n\r");
+		std::list<std::string> split_tokens = RPN::split(RPN::trim(argv[i]), " \t\n\r");
 		tokens.insert(tokens.end(), split_tokens.begin(), split_tokens.end());
 	}
 	return tokens;
@@ -22,7 +22,7 @@ int	main(int argc, char *argv[])
 		return 1;
 	}
 
-	std::vector<std::string> tokens = handle_args(argv);
+	std::list<std::string> tokens = handle_args(argv);
 
 	RPN rpnCalculator;
 	
