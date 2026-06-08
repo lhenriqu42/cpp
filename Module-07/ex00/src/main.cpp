@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 14:51:07 by gangel-a          #+#    #+#             */
+/*   Created: 2026/01/16 14:51:07 by lhenriqu          #+#    #+#             */
 /*   Updated: 2026/01/21 13:48:55 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -32,13 +32,11 @@ int main( void ) {
 	std::string c = "chaine1";
 	std::string d = "chaine2";
 
-	::swap(c, d);
+	swap(c, d);
 
 	std::cout << "c " MAG "= " YEL "\"" << c << RESET "\", d " MAG "= " YEL "\"" << d << "\"" RESET << std::endl;
 	std::cout << GRN "min" MAG "(" RESET "c, d" MAG ") " RESET "= " YEL "\"" << ::min( c, d ) << "\"" RESET << std::endl;
 	std::cout << GRN "max" MAG "(" RESET "c, d" MAG ") " RESET "= " YEL "\"" << ::max( c, d ) << "\"" RESET << std::endl;
-
-
 	
 	return 0;
 }

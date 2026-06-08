@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 15:46:01 by gangel-a          #+#    #+#             */
+/*   Created: 2026/01/16 15:46:01 by lhenriqu          #+#    #+#             */
 /*   Updated: 2026/01/21 15:14:33 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ class Array
 	Array(unsigned int n);
 	Array(const Array &copy);
 	Array &operator=(const Array &other);
+	
 	T &operator[](int index);
 	const T &operator[](int index) const;
 	~Array();
