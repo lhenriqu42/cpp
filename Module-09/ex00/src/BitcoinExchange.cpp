@@ -169,9 +169,7 @@ BitcoinExchange::BitcoinExchange()
 {
 	std::ifstream csvFile("data.csv");
 	if (!csvFile.is_open()) throw FileNotFoundException("Database file not found: " RESET "data.csv");
-	Database db;
-	loadCsv(db, csvFile);
-	this->_db = db;
+	loadCsv(this->_db, csvFile);
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
@@ -183,7 +181,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
 	if (this != &other)
 	{
-		// Assignment operator implementation
+		this->_db = other._db;
 	}
 	return *this;
 }
@@ -195,5 +193,5 @@ void BitcoinExchange::performExchange(const char *inputFilePath)
 	std::ifstream inputFile(inputFilePath);
 	if (!inputFile.is_open()) throw FileNotFoundException("Input file not found: " RESET + std::string(inputFilePath));	
 	
-	printResults(_db, inputFile);
+	printResults(this->_db, inputFile);
 }
